@@ -15,6 +15,11 @@
                     @endif
 
                     You are logged in!
+
+                    <h3>Your Organisations</h3>
+                    @foreach ($organisations as $organisation)
+                        <p>{{ Html::linkAction('Organisation@show', $organisation->name , array($organisation->id)) }}</p>
+                    @endforeach
                 </div>
             </div>
         </div>

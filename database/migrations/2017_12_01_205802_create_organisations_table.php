@@ -18,7 +18,7 @@ class CreateOrganisationsTable extends Migration
             $table->string('name');
             $table->timestamps();
         });
-        Schema::create('user_organisation', function (Blueprint $table) {
+        Schema::create('organisation_user', function (Blueprint $table) {
             $table->integer('organisation_id');
             $table->integer('user_id');
             $table->index('organisation_id');
