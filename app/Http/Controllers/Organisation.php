@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
 
 class Organisation extends Controller
 {
@@ -34,7 +35,10 @@ class Organisation extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $input = $request->all();
+        $organisation = \App\Organisation::create($input);
+        $request->user()->organisations()->attach($organisation->id);
+        return redirect()->action('HomeController@index');
     }
 
     /**
@@ -43,9 +47,10 @@ class Organisation extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request, $id)
     {
-        //
+        $org = \App\Organisation::find($id);
+        return view('organisation/show',['organisation'=>$org]);
     }
 
     /**

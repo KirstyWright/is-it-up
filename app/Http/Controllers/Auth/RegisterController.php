@@ -70,7 +70,7 @@ class RegisterController extends Controller
             'password' => bcrypt($data['password']),
         ]);
         $organisation = Organisation::create(['name'=>$data['organisation_name']]);
-        $user->organisations()->attach($user->id);
+        $user->organisations()->attach($organisation->id);
         return $user;
     }
 }

@@ -15,4 +15,8 @@ class Organisation extends Model
         'name'
     ];
 
+    public function sites()
+    {
+        return $this->hasMany('App\Site');
+    }
 }

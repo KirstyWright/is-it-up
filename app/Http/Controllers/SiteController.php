@@ -35,7 +35,10 @@ class SiteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $input = $request->all();
+        $organisation = \App\Organisation::create($input);
+        $request->user()->organisations()->attach($organisation->id);
+        return redirect()->action('HomeController@index');
     }
 
     /**
