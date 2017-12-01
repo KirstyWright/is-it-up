@@ -25,6 +25,20 @@
                             </div>
                         </div>
 
+                        <div class="form-group{{ $errors->has('organisation_name') ? ' has-error' : '' }}">
+                            <label for="name" class="col-md-4 control-label">Organisation Name</label>
+
+                            <div class="col-md-6">
+                                <input id="name" type="text" class="form-control" name="organisation_name" value="{{ old('organisation_name') }}" required>
+
+                                @if ($errors->has('organisation_name'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('organisation_name') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                             <label for="email" class="col-md-4 control-label">E-Mail Address</label>
 
