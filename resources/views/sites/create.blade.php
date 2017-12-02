@@ -5,12 +5,20 @@
     <div class="row">
         <h4>Create new Site</h4>
         {!! Form::open(['action' => 'SiteController@store','method'=>'post']) !!}
-            {{ Form::label('name', 'Site Name') }}
-            {{ Form::text('name') }}
-            {{ Form::label('url', 'Site Url') }}
-            {{ Form::text('url') }}
-            {{ Form::hidden('organisation_id',$organisation->id) }}
-            {{ Form::submit('Create') }}
+            <div class="form-group">
+                {{ Form::label('name', 'Site Name') }}
+                {{ Form::text('name') }}
+            </div>
+            <div class="form-group">
+                {{ Form::label('url', 'Site Url') }}
+                {{ Form::text('url') }}
+            </div>
+            <div class="form-group">
+                {{ Form::select('organisation_name', $organisationNames, null, ['placeholder' => 'Select an organisation']) }}
+            </div>
+            <div class="form-group">
+                {{ Form::submit('Create') }}
+            </div>
         {!! Form::close() !!}
     </div>
 </div>

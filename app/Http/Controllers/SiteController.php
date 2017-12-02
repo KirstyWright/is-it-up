@@ -22,9 +22,14 @@ class SiteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        return view('sites/create');
+        $organisationsNames = [];
+        $organisations = $request->user()->organisations;
+        foreach ($organisations as $org) {
+            $organisationsNames[] = $org->name;
+        }
+        return view('sites/create',['organisationNames'=>$organisationsNames]);
     }
 
     /**
@@ -35,9 +40,18 @@ class SiteController extends Controller
      */
     public function store(Request $request)
     {
+        $selectedOrg = false;
+        $orgs = $request->user()->organisations;
+        foreach ($orgs as $org)
+        {
+            if ($org->name == $request->input('organisation_name')) {
+                $selectedOrg = $org;
+                break;
+            }
+        }
         $input = $request->all();
-        $organisation = \App\Organisation::create($input);
-        $request->user()->organisations()->attach($organisation->id);
+        $input['organisation_id'] = $org->id;
+        $site = \App\Site::create($input);
         return redirect()->action('HomeController@index');
     }
 
