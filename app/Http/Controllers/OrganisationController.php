@@ -4,8 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\Organisation;
 
-class Organisation extends Controller
+class OrganisationController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -24,7 +25,6 @@ class Organisation extends Controller
      */
     public function create()
     {
-        //
     }
 
     /**
@@ -36,7 +36,7 @@ class Organisation extends Controller
     public function store(Request $request)
     {
         $input = $request->all();
-        $organisation = \App\Organisation::create($input);
+        $organisation = Organisation::create($input);
         $request->user()->organisations()->attach($organisation->id);
         return redirect()->action('HomeController@index');
     }

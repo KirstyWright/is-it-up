@@ -3,7 +3,6 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <hr>
         <h4>Create new Site</h4>
         {!! Form::open(['action' => 'SiteController@store','method'=>'post']) !!}
             {{ Form::label('name', 'Site Name') }}
